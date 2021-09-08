@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dfad3f8228d14f28bd9eea27d29636bd" Name="Diagram1">
+        <EntityTypeShape EntityType="KPModel.admins" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.countries" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.creators_film" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.DataUsers" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.films" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.genres" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.marks" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.role_actors" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPModel.Users" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="KPModel.FK_films_countries" ManuallyRouted="false" />
+        <AssociationConnector Association="KPModel.FK_role_actors_creators_film" ManuallyRouted="false" />
+        <AssociationConnector Association="KPModel.FK_DataUsers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="KPModel.FK_films_genres" ManuallyRouted="false" />
+        <AssociationConnector Association="KPModel.FK_marks_films" ManuallyRouted="false" />
+        <AssociationConnector Association="KPModel.FK_role_actors_films" ManuallyRouted="false" />
+        <AssociationConnector Association="KPModel.FK_marks_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

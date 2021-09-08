@@ -1,0 +1,45 @@
+﻿<Page x:Class="KP.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KP"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Login">
+    <Grid Background="#CD0074">
+        <Border MinWidth="540" 
+                Margin="300" 
+                Background="AntiqueWhite" 
+                VerticalAlignment="Center" 
+                MaxWidth="50" 
+                Padding="40"
+                CornerRadius="30">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="100" 
+                                  Color="LightBlue"
+                                  ShadowDepth="0">
+                </DropShadowEffect>
+            </Border.Effect>
+            <StackPanel>
+                <Grid Margin="0 0 0 20">
+                    <Button Content="Sign in"  
+                            HorizontalAlignment="Left" Height="Auto" Click="Button_Click" />
+                    <Button Content="Log in"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource MaterialDesignFlatButton}" VerticalAlignment="Top"/>
+                </Grid>
+                <TextBox x:Name="_textBoxLogin" 
+                         materialDesign:HintAssist.Hint="Enter your login"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="_textBoxPassword"
+                             materialDesign:HintAssist.Hint="Enter your password"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content="Log in"
+                        Margin="0 20" 
+                        Click="Button_Click_toPagewithfilms"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
