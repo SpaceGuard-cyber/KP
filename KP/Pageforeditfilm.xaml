@@ -61,8 +61,10 @@
                 <Button Content="Save changes"
                         Margin="720,20,720,20"
                         Click="Button_savechanges"/>
-                <DataGrid x:Name="DataofRole" IsReadOnly="True" 
-                          AutoGenerateColumns="False"
+                <DataGrid x:Name="DataofRole" 
+                          ItemsSource="{Binding myCollection}"
+                          IsReadOnly="True" 
+                          AutoGenerateColumns="True"
                           HorizontalAlignment="Center" 
                           Height="400"
                           Margin="0,0,0,0" 
@@ -70,7 +72,7 @@
                           Foreground="#FF020402" 
                           Width="1500" 
                           Background="LightBlue" 
-                          RenderTransformOrigin="0.5,0.5" SelectionChanged="DataofRole_SelectionChanged">
+                          RenderTransformOrigin="0.5,0.5">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="Background" 
@@ -93,21 +95,31 @@
                     </DataGrid.RenderTransform>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Country" 
+                                            Width="150"
                                             Binding="{Binding County}"/>
                         <DataGridTextColumn Header="Genre" 
+                                            Width="150"
                                             Binding="{Binding Genre}"/>
                         <DataGridTextColumn Header="Actor"
+                                            Width="150"
                                             Binding="{Binding Actor}"/>
                         <DataGridTextColumn Header="Creator"
+                                            Width="150"
                                             Binding="{Binding Creator}"/>
                         <DataGridTextColumn Header="Rating" 
                                             Binding="{Binding Rating}"/>
                         <DataGridTextColumn Header="Film link"
+                                            Width="150"
                                             Binding="{Binding Link}"/>
                         <DataGridTextColumn Header="Date of creation"
                                             Binding="{Binding Creation}"/>
-                        <DataGridTextColumn Header="Photo film"
-                                            Binding="{Binding Photo}"/>
+                        <DataGridTemplateColumn Header="Image Film" Width="613">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Img}" Width="10" Height="10"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

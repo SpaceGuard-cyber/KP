@@ -9,23 +9,12 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Pagewithfilms">
     <Grid Background="#CD0074">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="110*"/>
-            <ColumnDefinition Width="1520*"/>
-            <ColumnDefinition Width="110*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="416*"/>
-            <RowDefinition Height="39*"/>
-        </Grid.RowDefinitions>
-        <Border Grid.Column="1"
+        <Border Width="1700"
                 Background="AntiqueWhite" 
                 VerticalAlignment="Center" 
                 Padding="40"
                 CornerRadius="130" 
-                Height="908"
-                Grid.Row="1">
+                Height="920">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="100" 
                                   Color="LightBlue"
