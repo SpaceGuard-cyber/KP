@@ -9,14 +9,12 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Pageeditfilms">
     <Grid Background="#CD0074">
-        <Border MinWidth="540" 
-                Margin="90,10,90,10" 
+        <Border Width="1700"
                 Background="AntiqueWhite" 
                 VerticalAlignment="Center" 
-                MaxWidth="10000" 
                 Padding="40"
                 CornerRadius="130" 
-                Height="1065">
+                Height="920">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="100" 
                                   Color="LightBlue"
@@ -35,16 +33,10 @@
                         Click="Button_forpagewithfilms" 
                         Height="Auto"/>
                 <TextBlock Text="Edit film / Изменить фильм" 
-                           Margin="650,20,612,20"
+                           Margin="650,20,596,20"
                            FontSize="30"
                            Background="MediumPurple"
                            Style="{StaticResource MaterialDesignTextBlock}"/>
-                <TextBox x:Name="_addRating" 
-                         materialDesign:HintAssist.Hint="Add rating"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_editFilmLink" 
-                         materialDesign:HintAssist.Hint="Edit a link for movie"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <ComboBox x:Name="_addGenre" 
                          materialDesign:HintAssist.Hint="Add genre"
                          Style="{StaticResource MaterialDesignComboBox}"/>
@@ -57,9 +49,67 @@
                 <ComboBox x:Name="_addCreator" 
                          materialDesign:HintAssist.Hint="Add creator"
                          Style="{StaticResource MaterialDesignComboBox}"/>
+                <TextBox x:Name="_addRating" 
+                         materialDesign:HintAssist.Hint="Add rating"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="_editFilmLink" 
+                         materialDesign:HintAssist.Hint="Edit a link for movie"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="_addDateCreation" 
+                         materialDesign:HintAssist.Hint="Add date of the creation"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Button Content="Save changes"
                         Margin="720,20,720,20"
                         Click="Button_savechanges"/>
+                <DataGrid x:Name="DataofRole" IsReadOnly="True" 
+                          AutoGenerateColumns="False"
+                          HorizontalAlignment="Center" 
+                          Height="400"
+                          Margin="0,0,0,0" 
+                          VerticalAlignment="Center"
+                          Foreground="#FF020402" 
+                          Width="1500" 
+                          Background="LightBlue" 
+                          RenderTransformOrigin="0.5,0.5" SelectionChanged="DataofRole_SelectionChanged">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" 
+                                    Value="#CD0074"/>
+                            <Setter Property="FontWeight" 
+                                    Value="SemiBold"/>
+                            <Setter Property="BorderThickness"
+                                    Value="1"/>
+                            <Setter Property="BorderBrush" 
+                                    Value="Black"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="0.171"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.497"/>
+                        </TransformGroup>
+                    </DataGrid.RenderTransform>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Country" 
+                                            Binding="{Binding County}"/>
+                        <DataGridTextColumn Header="Genre" 
+                                            Binding="{Binding Genre}"/>
+                        <DataGridTextColumn Header="Actor"
+                                            Binding="{Binding Actor}"/>
+                        <DataGridTextColumn Header="Creator"
+                                            Binding="{Binding Creator}"/>
+                        <DataGridTextColumn Header="Rating" 
+                                            Binding="{Binding Rating}"/>
+                        <DataGridTextColumn Header="Film link"
+                                            Binding="{Binding Link}"/>
+                        <DataGridTextColumn Header="Date of creation"
+                                            Binding="{Binding Creation}"/>
+                        <DataGridTextColumn Header="Photo film"
+                                            Binding="{Binding Photo}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
         </Border>
     </Grid>

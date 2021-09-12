@@ -9,14 +9,23 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Pagewithfilms">
     <Grid Background="#CD0074">
-        <Border MinWidth="540" 
-                Margin="90,10,90,10" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110*"/>
+            <ColumnDefinition Width="1520*"/>
+            <ColumnDefinition Width="110*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="416*"/>
+            <RowDefinition Height="39*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Column="1"
                 Background="AntiqueWhite" 
                 VerticalAlignment="Center" 
-                MaxWidth="10000" 
                 Padding="40"
                 CornerRadius="130" 
-                Height="1065">
+                Height="908"
+                Grid.Row="1">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="100" 
                                   Color="LightBlue"
@@ -40,7 +49,7 @@
                         Click="Button_foractors" 
                         Height="Auto"/>
                 <TextBlock Text="Add a film / Добавить фильм" 
-                           Margin="650,20,612,20"
+                           Margin="650,20,546,20"
                            FontSize="30"
                            Background="MediumPurple"
                            Style="{StaticResource MaterialDesignTextBlock}"/>

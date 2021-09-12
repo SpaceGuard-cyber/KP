@@ -9,14 +9,13 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Pagewithfilms">
     <Grid Background="#CD0074">
-        <Border MinWidth="540" 
-                Margin="90,10,90,10" 
+
+        <Border Width="1700"
                 Background="AntiqueWhite" 
                 VerticalAlignment="Center" 
-                MaxWidth="100000" 
                 Padding="40"
                 CornerRadius="130" 
-                Height="1065">
+                Height="920">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="100" 
                                   Color="LightBlue"
@@ -35,7 +34,7 @@
                         Click="Button_foraddfilms" 
                         Height="Auto"/>
                 <TextBlock Text="Find a film / Найти фильм" 
-                           Margin="650,20,657,20"
+                           Margin="650,20,595,20"
                            FontSize="30"
                            Background="MediumPurple"
                            Style="{StaticResource MaterialDesignTextBlock}"/>
