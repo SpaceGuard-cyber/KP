@@ -10,11 +10,21 @@
       Title="Signin">
 
     <Grid Background="#CD0074">
-        <Border MinWidth="540" 
-                Margin="300" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Width="540"
+                Grid.Row="1"
+                Grid.Column="1"
                 Background="AntiqueWhite" 
                 VerticalAlignment="Center" 
-                MaxWidth="50" 
                 Padding="40"
                 CornerRadius="30">
             <Border.Effect>

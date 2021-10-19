@@ -8,12 +8,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Login">
+
     <Grid Background="#CD0074">
-        <Border MinWidth="540" 
-                Margin="300" 
+        <Border Width="540" 
                 Background="AntiqueWhite" 
                 VerticalAlignment="Center" 
-                MaxWidth="50" 
                 Padding="40"
                 CornerRadius="30">
             <Border.Effect>

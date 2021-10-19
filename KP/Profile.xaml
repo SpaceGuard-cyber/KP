@@ -9,14 +9,12 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Pagewithfilms">
     <Grid Background="#CD0074">
-        <Border MinWidth="540" 
-                Margin="90,10,90,10" 
+        <Border Width="1700"
                 Background="AntiqueWhite" 
                 VerticalAlignment="Center" 
-                MaxWidth="100000" 
                 Padding="40"
                 CornerRadius="130" 
-                Height="1065">
+                Height="920">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="100" 
                                   Color="LightBlue"
@@ -35,10 +33,10 @@
                         Click="Button_forpagewithfilms" 
                         Height="Auto"/>
                 <TextBlock Text="Your Profile / Ваш профиль" 
-                           Margin="650,20,642,20"
+                           VerticalAlignment="Center"
                            FontSize="30"
                            Background="MediumPurple"
-                           Style="{StaticResource MaterialDesignTextBlock}"/>
+                           Style="{StaticResource MaterialDesignTextBlock}" Margin="619,0,630,0"/>
                 <TextBox x:Name="_userName" 
                          materialDesign:HintAssist.Hint="Your Name"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
