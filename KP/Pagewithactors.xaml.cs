@@ -79,7 +79,7 @@ namespace KP
         }
         private void Button_forpagewithfilms(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pagewithfilms());
+            NavigationService.Navigate(new Pageforeditfilm());
         }
 
         private void Button_forprofile(object sender, RoutedEventArgs e)

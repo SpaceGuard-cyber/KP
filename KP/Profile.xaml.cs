@@ -31,7 +31,7 @@ namespace KP
                 _userLastName.Text = db.Users.Where(x => x.id_users == Login.mainID).Select(y => y.user_lastname).FirstOrDefault();
                 _userSecondName.Text = db.Users.Where(x => x.id_users == Login.mainID).Select(y => y.user_secondname).FirstOrDefault();
                 _dataBirth.Text = db.Users.Where(x => x.id_users == Login.mainID).Select(y => y.dataofbirth).FirstOrDefault().ToString();
-                _email.Text = db.Users.Where(x => x.id_users == Login.mainID).Select(y => y.user_name).FirstOrDefault();
+                _email.Text = db.Users.Where(x => x.id_users == Login.mainID).Select(y => y.email).FirstOrDefault();
             }
         }
         public void forButton()
@@ -95,7 +95,7 @@ namespace KP
 
         private void Button_forpagewithfilms(object sender, RoutedEventArgs e)
         {
-           NavigationService.Navigate(new Pagewithfilms());
+           NavigationService.Navigate(new Pageforeditfilm());
         }
 
         private void Button_SaveChanges(object sender, RoutedEventArgs e)

@@ -27,18 +27,13 @@
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="Button_forprofile" 
                         Height="Auto"/>
-                <Button Content="To page with films"
-                        HorizontalAlignment="Right"
-                        Style="{StaticResource MaterialDesignFlatButton}" 
-                        Click="Button_forpagewithfilms" 
-                        Height="Auto"/>
                 <Button Content="To page with actors"
                         HorizontalAlignment="Right"
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="Button_foractors" 
                         Height="Auto"/>
                 <TextBlock Text="Add a film / Добавить фильм" 
-                           Margin="650,20,546,20"
+                           Margin="650,20,570,20"
                            FontSize="30"
                            Background="MediumPurple"
                            Style="{StaticResource MaterialDesignTextBlock}"/>
@@ -57,7 +52,7 @@
                 <Button Content=" Choose photo"
                         Margin="720,20,720,20"
                         Click="Button_Choosephoto"/>
-                <Button Content="Edit film"
+                <Button Content="Edit film or find film"
                         Margin="720,20,720,20"
                         Click="Button_editfilm"/>
             </StackPanel>

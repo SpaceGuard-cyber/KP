@@ -27,7 +27,8 @@ namespace KP
             InitializeComponent();
             using (KPEntities db = new KPEntities())
             {
-                _addByData.Text = db.films.Where(x => x.id_film == addfilm.filmID).Select(y => y.date_creation).FirstOrDefault().ToString();                
+
+                _addByData.Text = db.films.Where(x => x.id_film == addfilm.filmID).Select(y => y.date_creation).FirstOrDefault().ToString();
             }
         }
 
@@ -58,11 +59,8 @@ namespace KP
                     _addFilmLink.ToolTip = "";
                     _addFilmLink.Background = Brushes.Transparent;
 
-                    films addfilms = null;
                     using (KPEntities db = new KPEntities())
                     {
-                        addfilms = db.films.Where(b => b.name_film == name_film && b.film_link == Link).FirstOrDefault();
-                        filmID = db.films.Where(a => a.name_film == name_film).Select(x => x.id_film).FirstOrDefault();
                         films addFilm = new films();
 
                         addFilm.name_film = name_film;

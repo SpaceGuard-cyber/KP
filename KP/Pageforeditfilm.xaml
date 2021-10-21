@@ -9,12 +9,12 @@
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Pageeditfilms">
     <Grid Background="#CD0074">
-        <Border Width="1700"
-                Background="AntiqueWhite" 
-                VerticalAlignment="Center" 
+        <Border Background="AntiqueWhite" 
+                VerticalAlignment="Center"
+                Width="1700"
                 Padding="40"
                 CornerRadius="130" 
-                Height="920">
+                Height="900">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="100" 
                                   Color="LightBlue"
@@ -27,16 +27,29 @@
                         Style="{StaticResource MaterialDesignFlatButton}" 
                         Click="Button_forprofile" 
                         Height="Auto"/>
-                <Button Content="To page with films"
+                <Button Content="To page for add film"
                         HorizontalAlignment="Right"
                         Style="{StaticResource MaterialDesignFlatButton}" 
-                        Click="Button_forpagewithfilms" 
+                        Click="Button_forpageaddfilms" 
                         Height="Auto"/>
-                <TextBlock Text="Edit film / Изменить фильм" 
-                           Margin="650,20,596,20"
+                <TextBlock Text="Edit film or find it/ Изменить фильм или найти его" 
+                           Margin="589,20,344,20"
                            FontSize="30"
                            Background="MediumPurple"
+                           
                            Style="{StaticResource MaterialDesignTextBlock}"/>
+                <TextBox x:Name="_editfilm" 
+                         materialDesign:HintAssist.Hint="Choose film what you want find or edit"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <!--<TextBox x:Name="_addRating" 
+                         materialDesign:HintAssist.Hint="Add rating"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="_dateCreation" 
+                         materialDesign:HintAssist.Hint="Date of the creation"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="_editFilmLink" 
+                         materialDesign:HintAssist.Hint="Edit a link for movie"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <ComboBox x:Name="_addGenre" 
                          materialDesign:HintAssist.Hint="Add genre"
                          Style="{StaticResource MaterialDesignComboBox}"/>
@@ -48,75 +61,38 @@
                          Style="{StaticResource MaterialDesignComboBox}"/>
                 <ComboBox x:Name="_addCreator" 
                          materialDesign:HintAssist.Hint="Add creator"
-                         Style="{StaticResource MaterialDesignComboBox}"/>
-                <TextBox x:Name="_addRating" 
-                         materialDesign:HintAssist.Hint="Add rating"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_editFilmLink" 
-                         materialDesign:HintAssist.Hint="Edit a link for movie"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_addDateCreation" 
-                         materialDesign:HintAssist.Hint="Add date of the creation"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Button Content="Save changes"
+                         Style="{StaticResource MaterialDesignComboBox}"/>-->
+                <Button Content="Find film"
                         Margin="720,20,720,20"
                         Click="Button_savechanges"/>
-                <DataGrid x:Name="DataofRole" 
-                          ItemsSource="{Binding myCollection}"
-                          IsReadOnly="True" 
-                          AutoGenerateColumns="True"
-                          HorizontalAlignment="Center" 
-                          Height="400"
-                          Margin="0,0,0,0" 
-                          VerticalAlignment="Center"
-                          Foreground="#FF020402" 
-                          Width="1500" 
-                          Background="LightBlue" 
-                          RenderTransformOrigin="0.5,0.5">
+                <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="editorFilms" ItemsSource="{Binding films}" Grid.Row="2" RenderTransformOrigin="0.533,0.316" Height="569" Background="AliceBlue">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="Background" 
-                                    Value="#CD0074"/>
-                            <Setter Property="FontWeight" 
-                                    Value="SemiBold"/>
-                            <Setter Property="BorderThickness"
-                                    Value="1"/>
-                            <Setter Property="BorderBrush" 
-                                    Value="Black"/>
+                            <Setter Property="Background" Value="MediumPurple"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
                         </Style>
+                        <ContextMenu x:Key="RowMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+                            <MenuItem Header="Перейти к фильму" Click="Come_Click"/>
+                            <MenuItem Header="Удалить" Click="Delete_Click"/>
+                            <MenuItem Header="Изменить" Click="Change_Click"/>
+                        </ContextMenu>
                     </DataGrid.Resources>
-                    <DataGrid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="0.171"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0.497"/>
-                        </TransformGroup>
-                    </DataGrid.RenderTransform>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+                        </Style>
+                    </DataGrid.RowStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Country" 
-                                            Width="150"
-                                            Binding="{Binding County}"/>
-                        <DataGridTextColumn Header="Genre" 
-                                            Width="150"
-                                            Binding="{Binding Genre}"/>
-                        <DataGridTextColumn Header="Actor"
-                                            Width="150"
-                                            Binding="{Binding Actor}"/>
-                        <DataGridTextColumn Header="Creator"
-                                            Width="150"
-                                            Binding="{Binding Creator}"/>
-                        <DataGridTextColumn Header="Rating" 
-                                            Binding="{Binding Rating}"/>
-                        <DataGridTextColumn Header="Film link"
-                                            Width="150"
-                                            Binding="{Binding Link}"/>
-                        <DataGridTextColumn Header="Date of creation"
-                                            Binding="{Binding Creation}"/>
-                        <DataGridTemplateColumn Header="Image Film" Width="613">
+                        <DataGridTextColumn Header="   Номер фильма " Binding="{Binding id_film}" Width="*" Visibility="Hidden"/>
+                        <DataGridTextColumn Header="   Name of Film " Binding="{Binding name_film}" Width="*"/>
+                        <DataGridTextColumn Header="   Date of Create " Binding="{Binding date_creation}" Width="*"/>
+                        <DataGridTextColumn Header="   Film Link " Binding="{Binding film_link}" Width="*"/>
+                        <DataGridTemplateColumn Header="MyImage" MaxWidth="500">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Img}" Width="10" Height="10"/>
+                                    <Image Source="{Binding film_photo}" Width="320" Height="320"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

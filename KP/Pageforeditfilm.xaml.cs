@@ -20,77 +20,136 @@ namespace KP
     /// </summary>
     public partial class Pageforeditfilm : Page
     {
+        public static int GeneralID;
         public Pageforeditfilm()
         {
             InitializeComponent();
+
             using (KPEntities db = new KPEntities())
             {
-                var countries = db.countries.Select(x => x.name_country).ToList();
-                _addCountry.ItemsSource = countries;
-                var genres = db.genres.Select(x => x.name_genre).ToList();
-                _addGenre.ItemsSource = genres;
-                var actor = db.creators_film.Select(x => x.actor_lastname).ToList();
-                _addActor.ItemsSource = actor;
-                var creator = db.creators_film.Select(x => x.actor_lastname).ToList();
-                _addCreator.ItemsSource = creator;
-                var film = db.films.Select(x => x.name_film).ToList();
-                
-                _editFilmLink.Text = db.films.Where(x => x.id_film == addfilm.filmID).Select(y => y.film_link).FirstOrDefault();
-                _addRating.Text = db.films.Where(x => x.id_film == addfilm.filmID).Select(y => y.rating).FirstOrDefault().ToString();
-                _addCountry.Text = db.countries.Where(x => x.id_country == addfilm.filmID).Select(y => y.name_country).FirstOrDefault();
-                _addGenre.Text = db.genres.Where(x => x.id_genre == addfilm.filmID).Select(y => y.name_genre).FirstOrDefault();
-                _addDateCreation.Text = db.films.Where(x => x.id_film == addfilm.filmID).Select(y => y.date_creation).FirstOrDefault().ToString();
-                _addCreator.Text = db.creators_film.Where(x => x.id_creator == addfilm.filmID).Select(y => y.actor_lastname).FirstOrDefault();
-                _addActor.Text = db.creators_film.Where(x => x.id_creator == addfilm.filmID).Select(y => y.actor_lastname).FirstOrDefault();
+            //    _addActor.Text = db.creators_film.Where(x => x.id_creator == addfilm.filmID).Select(y => y.actor_lastname).FirstOrDefault();
+            //    _addCreator.Text = db.creators_film.Where(x => x.id_creator == addfilm.filmID).Select(y => y.actor_lastname).FirstOrDefault();
+            //    _addRating.Text = db.films.Where(x => x.id_film == addfilm.filmID).Select(y => y.rating).FirstOrDefault().ToString();
+            //    _dateCreation.Text = db.films.Where(x => x.id_film == addfilm.filmID).Select(y => y.date_creation).FirstOrDefault().ToString();
+            //    _addGenre.Text = db.genres.Where(x => x.id_genre == addfilm.filmID).Select(y => y.name_genre).FirstOrDefault();
+            //    _addCountry.Text = db.countries.Where(x => x.id_country == addfilm.filmID).Select(y => y.name_country).FirstOrDefault();
 
+
+                var editFilms = db.films.Select(x => x).ToList();
+                editorFilms.ItemsSource = editFilms;
             }
         }
 
         public void forButton()
         {
-            string editLink = _editFilmLink.Text.Trim();
-            int addRating;
-            DateTime addDateCreation;
-            string addCountry = _addCountry.Text.Trim();
-            string addGenre = _addGenre.Text.Trim();
-            string addCreator = _addCreator.Text.Trim();
-            string addActor = _addActor.Text.Trim();
 
-            _addRating.ToolTip = "";
-            _addRating.Background = Brushes.Transparent;
-            _editFilmLink.ToolTip = "";
-            _editFilmLink.Background = Brushes.Transparent;
-            _addDateCreation.ToolTip = "";
-            _addDateCreation.Background = Brushes.Transparent;
+            //string addActor = _addActor.Text.Trim();
+            //string addCreator = _addCreator.Text.Trim();
+            //string addRating = _addRating.Text.Trim();
+            //DateTime dateCreation;
+            //string addCountry = _addCountry.Text.Trim();
+            //string addGenre = _addGenre.Text.Trim();
 
-            addRating = Convert.ToInt32(_addRating.Text.Trim());
-            addDateCreation = Convert.ToDateTime(_addDateCreation.Text.Trim());
-
+            string proverka = _editfilm.Text.Trim();
+            System.Data.SqlClient.SqlParameter param = new System.Data.SqlClient.SqlParameter("@name", $"%{proverka}%");
             using (KPEntities db = new KPEntities())
             {
-                var profilefilms = db.films.Where(a => a.id_film == addfilm.filmID).FirstOrDefault();
+                if (proverka == "")
+                {
+                    var editFilms = db.films.Select(x => x).ToList<films>();
+                    editorFilms.ItemsSource = editFilms;
+                    MessageBox.Show("Вы не ввели название фильма повторите поиск");
+                }
+                else
+                {
+                    var namefilms = db.Database.SqlQuery<films>("SELECT * FROM films WHERE name_film LIKE @name", param);
+                    if (namefilms != null)
+                    {
+                        editorFilms.ItemsSource = namefilms.ToList();
+                    }
+                    else MessageBox.Show("Такого фильма не существует");
+                }
+            }
 
-                countries editCountry = new countries();
-                genres editGenre = new genres();
-                creators_film addcreator = new creators_film();
-                creators_film addactor = new creators_film();
+        }
+        private void Come_Click(object sender, RoutedEventArgs e)
+        {
+            using (KPEntities db = new KPEntities())
+            {
+                try
+                {
+                    int idFilm = ((films)editorFilms.SelectedItem).id_film;
+                    if (idFilm != 0)
+                    {
+                        MessageBox.Show(Convert.ToString(idFilm));
+                        MessageBox.Show(((films)editorFilms.SelectedItem).name_film);
+                        string proverka = _editfilm.Text.Trim();
+                        GeneralID = idFilm;
+                        NavigationService.Navigate(new Pageforeditfilm());
+                    }
+                }
+                catch { }
+            }
+        }
+        //Удаление Фильма
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (KPEntities db = new KPEntities())
+                {
+                    if (db.admins.Where(x => x.admin_login == Login.GeneralLogin).Select(x => x).FirstOrDefault() != null)
+                    {
+                        int idFilm = ((films)editorFilms.SelectedItem).id_film;
+                        if (idFilm != 0)
+                        {
+                            MessageBox.Show(Convert.ToString(idFilm));
+                            MessageBox.Show(((films)editorFilms.SelectedItem).name_film);
+                            string proverka = _editfilm.Text.Trim();
+                            GeneralID = idFilm;
+                            var getIDFILM = db.films.Where(x => x.id_film == Pageforeditfilm.GeneralID).Select(y => y).FirstOrDefault();
+                            db.films.Remove(getIDFILM);
+                            db.SaveChanges();
+                            var editFilms = db.films.Select(x => x).ToList<films>();
+                            editorFilms.ItemsSource = editFilms;
+                        }
+                    }
+                    else { MessageBox.Show("You are not admin"); }
+                }
+            }
+            catch { }
+        }
+        //Изменение фильма 
+        private void Change_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int idFilm = ((films)editorFilms.SelectedItem).id_film;
+                if (idFilm != 0)
+                {
+                    MessageBox.Show(Convert.ToString(idFilm));
+                    MessageBox.Show(((films)editorFilms.SelectedItem).name_film);
+                    string PROV1 = _editfilm.Text.Trim();
+                    GeneralID = idFilm;
+                    using (KPEntities db = new KPEntities())
+                    {
+                        if (db.admins.Where(x => x.admin_login == Login.GeneralLogin).Select(x => x).FirstOrDefault() != null)
+                        {
+                            NavigationService.Navigate(new Pageforeditfilm());
+                        }
+                        else { MessageBox.Show("You are not admin"); }
+                    }
+                }
+            }
+            catch
+            {
 
-                profilefilms.rating = addRating;
-                profilefilms.name_film = editLink;
-                editCountry.name_country = addCountry;
-                profilefilms.rating = addRating;
-                profilefilms.film_link = editLink;
-                editGenre.name_genre = addGenre;
-                profilefilms.date_creation = addDateCreation;
-                addactor.actor_lastname = addActor;
-                addcreator.actor_lastname = addCreator;
-                db.SaveChanges();
             }
         }
 
-        private void Button_forpagewithfilms(object sender, RoutedEventArgs e)
+        private void Button_savechanges(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pagewithfilms());
+            forButton();
         }
 
         private void Button_forprofile(object sender, RoutedEventArgs e)
@@ -98,9 +157,9 @@ namespace KP
             NavigationService.Navigate(new ProfileUsers());
         }
 
-        private void Button_savechanges(object sender, RoutedEventArgs e)
+        private void Button_forpageaddfilms(object sender, RoutedEventArgs e)
         {
-            forButton();
+            NavigationService.Navigate(new addfilm());
         }
     }
 }

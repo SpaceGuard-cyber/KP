@@ -20,6 +20,7 @@ namespace KP
     /// </summary>
     public partial class Login : Page
     {
+        public static string GeneralLogin;
         public Login()
         {
             InitializeComponent();
@@ -31,8 +32,8 @@ namespace KP
         {
             try
             {
-
                 string _login = _textBoxLogin.Text.Trim();
+                GeneralLogin = _textBoxLogin.Text;
                 string _password = _textBoxPassword.Password.Trim();
 
                 if (_login.Length < 5)
@@ -53,16 +54,27 @@ namespace KP
                     _textBoxPassword.Background = Brushes.Transparent;
 
                     DataUsers _loginUser = null;
+                    admins admins = null;
+
                     using (KPEntities db = new KPEntities())
                     {
-                        _loginUser = db.DataUsers.Where(b => b.login == _login && b.password == _password).FirstOrDefault();
-                        mainID = db.DataUsers.Where(a => a.login == _login).Select(x=>x.id_Users).FirstOrDefault();
+                        admins = db.admins.Where(l => l.admin_login == _login && l.admin_password == _password).FirstOrDefault();
+                        mainID = db.admins.Where(a => a.admin_login == _login).Select(x => x.id_admin).FirstOrDefault();
+
+                        if (mainID == 0)
+                        {
+                            _loginUser = db.DataUsers.Where(b => b.login == _login && b.password == _password).FirstOrDefault();
+                            mainID = db.DataUsers.Where(a => a.login == _login).Select(x => x.id_Users).FirstOrDefault();
+                        }
                     }
-                    if(_loginUser != null)
+                    if ((_loginUser != null) || (admins != null))
+                    {
                         MessageBox.Show("You Login!");
+                        NavigationService.Navigate(new Pageforeditfilm());
+
+                    }
                     else
                         MessageBox.Show("You wrote inccorrect datas!");
-                    NavigationService.Navigate(new Pagewithfilms());
                 }
             }
             catch

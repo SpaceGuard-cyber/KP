@@ -41,27 +41,45 @@
                 <TextBox x:Name="_findFilm" 
                          materialDesign:HintAssist.Hint="Find Film"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_findActor" 
+                <ComboBox x:Name="_findActor" 
                          materialDesign:HintAssist.Hint="Find actor"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_findByGenre" 
+                         Style="{StaticResource MaterialDesignComboBox}"/>
+                <ComboBox x:Name="_findByGenre" 
                          materialDesign:HintAssist.Hint="Search a movie by genre"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_findByMarks" 
+                         Style="{StaticResource MaterialDesignComboBox}"/>
+                <ComboBox x:Name="_findByMarks" 
                          materialDesign:HintAssist.Hint="Search a movie by marks"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_findByCountry" 
+                         Style="{StaticResource MaterialDesignComboBox}"/>
+                <ComboBox x:Name="_findByCountry" 
                          materialDesign:HintAssist.Hint="Search a movie by country"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="_findByCreator" 
-                         materialDesign:HintAssist.Hint="Search a movie by creator"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                         Style="{StaticResource MaterialDesignComboBox}"/>
+                <ComboBox x:Name="_findByCreator" 
+                         materialDesign:HintAssist.Hint="find by creator"
+                         Style="{StaticResource MaterialDesignComboBox}"/>
                 <TextBox x:Name="_findByData" 
                          materialDesign:HintAssist.Hint="Search a movie by data created"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Button Content="Find a film"
                         Margin="720,20,720,20"
                         Click="Button_FindFilm"/>
+                <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="finderFilms" ItemsSource="{Binding films}" Grid.Row="2" RenderTransformOrigin="0.533,0.316" Height="337" Background="AliceBlue">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="MediumPurple"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="   Номер фильма " Binding="{Binding id_film}" Visibility="Hidden"/>
+                        <DataGridTextColumn Header="   Name of Film " Binding="{Binding name_film}"/>
+                        <DataGridTextColumn Header="   Date of Create " Binding="{Binding date_creation}"/>
+                        <DataGridTextColumn Header="   Film Link " Binding="{Binding film_link}"/>
+                        <DataGridTextColumn Header="   Rating " Binding="{Binding rating}"/>
+                        <DataGridTextColumn Header="   Photo " Binding="{Binding film_photo}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
         </Border>
     </Grid>
