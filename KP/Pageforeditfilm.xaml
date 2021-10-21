@@ -61,7 +61,7 @@
                          Style="{StaticResource MaterialDesignComboBox}"/>
                 <ComboBox x:Name="_addCreator" 
                          materialDesign:HintAssist.Hint="Add creator"
-                         Style="{StaticResource1 MaterialDesignComboBox}"/>-->
+                         Style="{StaticResource MaterialDesignComboBox}"/>-->
                 <Button Content="Find film"
                         Margin="720,20,720,20"
                         Click="Button_savechanges"/>
